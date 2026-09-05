@@ -142,3 +142,107 @@
     color: var(--color-foreground);
   }
 }
+
+/* ── Editorial article typography (long-form salary research page) ───────── */
+
+:root {
+  --brand: oklch(0.52 0.15 250);
+  --brand-foreground: oklch(0.99 0 0);
+  --highlight: oklch(0.96 0.05 95);
+  --font-serif: Georgia, "Times New Roman", serif;
+}
+
+@theme inline {
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --font-serif: var(--font-serif);
+}
+
+.article {
+  color: var(--color-foreground);
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  overflow-wrap: break-word;
+}
+
+.article h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.9rem, 4vw, 2.9rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+
+.article h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.45rem, 2.6vw, 2rem);
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 3rem 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-border);
+  scroll-margin-top: 1.5rem;
+}
+
+.article h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 2rem 0 0.75rem;
+}
+
+.article p { margin: 0 0 1.1rem; }
+.article strong { font-weight: 700; }
+
+.article a {
+  color: var(--brand);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.article ul,
+.article ol {
+  margin: 0 0 1.25rem 1.25rem;
+  padding-left: 0.5rem;
+}
+.article ul { list-style: disc; }
+.article ol { list-style: decimal; }
+.article li { margin-bottom: 0.5rem; }
+
+.article blockquote {
+  margin: 1.75rem 0;
+  padding: 1.25rem 1.4rem;
+  border-left: 4px solid var(--brand);
+  border-radius: var(--radius-md);
+  background: var(--highlight);
+  font-size: 1.05rem;
+}
+.article blockquote p:last-child { margin-bottom: 0; }
+
+.article hr {
+  margin: 2.75rem 0;
+  border: 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.article table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  margin: 1.5rem 0 2rem;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+.article thead { background: var(--color-muted); }
+.article th,
+.article td {
+  border: 1px solid var(--color-border);
+  padding: 0.55rem 0.7rem;
+  text-align: left;
+  vertical-align: top;
+}
+.article th { font-weight: 700; }
+.article tbody tr:nth-child(even) { background: color-mix(in oklab, var(--color-muted) 45%, transparent); }
+
+.article em { color: var(--color-muted-foreground); }
