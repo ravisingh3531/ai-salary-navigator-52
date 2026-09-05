@@ -2,12 +2,35 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { ArticleMarkdown } from "@/components/ArticleMarkdown";
 import { Reveal } from "@/components/Reveal";
+import { SectionLogicMojo } from "@/components/report/SectionLogicMojo";
+import { SectionReviews } from "@/components/report/SectionReviews";
+import { SectionAlsoConsidered } from "@/components/report/SectionAlsoConsidered";
+import { SectionExpectations } from "@/components/report/SectionExpectations";
+import { SectionRoi } from "@/components/report/SectionRoi";
+import { SectionChoose } from "@/components/report/SectionChoose";
+import { SectionRedFlags } from "@/components/report/SectionRedFlags";
+import { SectionFreeVsPaid } from "@/components/report/SectionFreeVsPaid";
+import { SectionPeople } from "@/components/report/SectionPeople";
+import { SectionFaqs, faqGroups } from "@/components/report/SectionFaqs";
+import { SectionVerdict } from "@/components/report/SectionVerdict";
+import { SiteFooter } from "@/components/report/SiteFooter";
 import raw from "@/content/highest-salary-ai-courses.md?raw";
 
-const title =
-  "Which AI Courses Give the Highest Salary in 2026? Top 10 Compared";
+const title = "Which AI Courses Give the Highest Salary? (2026 Guide)";
 const description =
-  "A salary-outcome comparison of the top 10 AI courses for Indian learners in 2026: GenAI and MLOps depth, placement support, fees, EMI, ROI and realistic package expectations by role.";
+  "Which AI courses give the highest salary in 2026? 10 courses compared on salary-relevant skills, placement support, fees, ROI and verified salary data.";
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqGroups.flatMap((g) =>
+    g.faqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  ),
+};
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -19,9 +42,16 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "article" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(faqSchema),
+      },
+    ],
   }),
   component: Index,
 });
+
 
 type Section = { id: string; heading: string; body: string };
 
