@@ -438,7 +438,7 @@ function Index() {
               Jump to a section
             </summary>
             <nav className="mt-3 space-y-1">
-              {sections.map((s) => (
+              {toc.map((s) => (
                 <a
                   key={s.id}
                   href={`#${s.id}`}
