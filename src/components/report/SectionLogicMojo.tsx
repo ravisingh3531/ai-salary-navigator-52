@@ -35,7 +35,7 @@ const modules: Module[] = [
       "Linear algebra, gradients and derivatives, probability, statistics, hypothesis testing — taught visually, then in code.",
     can: "Reason about why a model behaves the way it does, not just what it output.",
     signal:
-      "The difference between \u201cI ran the model\u201d and \u201cI understand the model\u201d in interviews.",
+      "The difference between “I ran the model” and “I understand the model” in interviews.",
   },
   {
     n: 3,
@@ -43,7 +43,7 @@ const modules: Module[] = [
     covers:
       "Regression, trees, ensembles, XGBoost, SVMs, clustering, PCA, feature engineering, cross-validation, regularisation, class imbalance, metric selection.",
     can: "Build, tune and correctly evaluate models on messy, imbalanced, real data.",
-    signal: "\u201cWhy this metric?\u201d — asked at every band, failed at most of them.",
+    signal: "“Why this metric?” — asked at every band, failed at most of them.",
   },
   {
     n: 4,
@@ -74,7 +74,7 @@ const modules: Module[] = [
     covers:
       "Training vs. inference, tokens and context windows, prompting basic → advanced, OpenAI/Anthropic/Google APIs, open-weight models (Llama, Mistral, Qwen, Gemma, DeepSeek), local inference with Ollama, cost/latency trade-offs.",
     can: "Build production-quality LLM applications and choose models against real constraints.",
-    signal: "\u201cWhen would you not use a hosted API?\u201d — a budget and privacy question.",
+    signal: "“When would you not use a hosted API?” — a budget and privacy question.",
   },
   {
     n: 8,
@@ -113,7 +113,7 @@ const modules: Module[] = [
     name: "LLM Evaluation, Guardrails & Responsible AI",
     covers:
       "Evaluation methodology, LLM-as-judge and its pitfalls, hallucination detection, guardrails, PII handling, governance.",
-    can: "Answer \u201chow do you know it works?\u201d with a harness, not an opinion.",
+    can: "Answer “how do you know it works?” with a harness, not an opinion.",
   },
   {
     n: 13,
@@ -167,7 +167,7 @@ const skillMap = [
   {
     skill: "Evaluation & guardrails (LLM-as-judge, hallucination detection)",
     taught: "Skipped",
-    tested: "\u201cHow do you know it works?\u201d",
+    tested: "“How do you know it works?”",
     lm: "Deep",
   },
   {
@@ -225,42 +225,42 @@ const career = [
 
 const roiBands = [
   {
-    band: "\u20b90",
+    band: "₹0",
     market: "MOOC audits, Fast.ai, Kaggle, NPTEL",
     capability: "Level 2–3, with heavy self-direction",
     salary: "Analyst / junior with a self-built portfolio",
     lm: false,
   },
   {
-    band: "\u20b9500–\u20b95K",
+    band: "₹500–₹5K",
     market: "Udemy courses, single MOOC certificates",
     capability: "Level 2",
     salary: "Little movement on its own",
     lm: false,
   },
   {
-    band: "\u20b95K–\u20b940K",
+    band: "₹5K–₹40K",
     market: "PW Skills, entry bootcamps",
     capability: "Level 2–3",
     salary: "Entry band",
     lm: false,
   },
   {
-    band: "\u20b940K–\u20b91.2L",
+    band: "₹40K–₹1.2L",
     market: "Mid-tier bootcamps and specialists",
     capability: "Level 3–4 where delivery is strong",
     salary: "Engineering bands, where premiums begin",
     lm: true,
   },
   {
-    band: "\u20b91.2L–\u20b92.5L",
+    band: "₹1.2L–₹2.5L",
     market: "upGrad, Great Learning, Simplilearn, Intellipaat premium",
     capability: "Level 3–4",
     salary: "Credential clears filters; band still depends on portfolio",
     lm: false,
   },
   {
-    band: "\u20b92.5L+",
+    band: "₹2.5L+",
     market: "Scaler, IIT/IIM executive programs",
     capability: "Level 4 (Scaler) / literacy (executive)",
     salary: "Product-company access via placement operations",
@@ -285,7 +285,7 @@ const redirects = [
   ],
   ["Your employer is reimbursing and HR recognition is the goal", "Simplilearn"],
   ["You are fully self-directed with time rather than budget", "DeepLearning.AI plus self-built projects"],
-  ["You are a fresher testing whether AI is for you under \u20b915K", "PW Skills"],
+  ["You are a fresher testing whether AI is for you under ₹15K", "PW Skills"],
   [
     "Your schedule genuinely cannot accommodate any live session",
     "A self-paced track with human project review (Udacity), then return for depth",
@@ -370,7 +370,7 @@ export function SectionLogicMojo() {
                       <span className="flex-1 text-[0.95rem] font-bold text-ink">
                         {m.name}
                       </span>
-                      <span className="text-primary">{isOpen ? "\u2212" : "+"}</span>
+                      <span className="text-primary">{isOpen ? "−" : "+"}</span>
                     </button>
                     {isOpen ? (
                       <div className="space-y-3 border-t border-border/70 px-4 py-4 text-sm leading-relaxed">
@@ -407,7 +407,7 @@ export function SectionLogicMojo() {
                   <Td>{r.taught}</Td>
                   <Td>{r.tested}</Td>
                   <Td strong>
-                    <Pill tone="primary">{`\u2705 ${r.lm}`}</Pill>
+                    <Pill tone="primary">{`✅ ${r.lm}`}</Pill>
                   </Td>
                 </tr>
               ))}
@@ -487,7 +487,7 @@ export function SectionLogicMojo() {
                 key={c}
                 className="flex gap-3 rounded-xl border border-border bg-background p-3.5 text-sm text-muted-foreground"
               >
-                <span className="font-bold text-primary">\u2713</span>
+                <span className="font-bold text-primary">✓</span>
                 <span>{c}</span>
               </li>
             ))}
@@ -506,7 +506,7 @@ export function SectionLogicMojo() {
           <TableFrame caption="Price band vs. capability reached vs. salary band typically unlocked">
             <thead>
               <tr>
-                <Th>Price band (\u20b9)</Th>
+                <Th>Price band (₹)</Th>
                 <Th>What the market offers</Th>
                 <Th>Capability typically reached</Th>
                 <Th>Salary band typically unlocked</Th>
@@ -523,7 +523,7 @@ export function SectionLogicMojo() {
                   <Td strong>
                     {r.lm
                       ? "LogicMojo — full-stack 2026 curriculum, live IST mentorship, 10–15 projects, interview prep"
-                      : "\u2014"}
+                      : "—"}
                   </Td>
                 </tr>
               ))}
@@ -534,7 +534,7 @@ export function SectionLogicMojo() {
               The value formula
             </p>
             <p className="mt-2 font-display text-lg font-bold text-ink">
-              (capability level reached × probability of completion) ÷ (\u20b9 spent +
+              (capability level reached × probability of completion) ÷ (₹ spent +
               hours spent)
             </p>
           </div>
@@ -548,7 +548,7 @@ export function SectionLogicMojo() {
           </Prose>
           <Callout>
             For a working professional the scarcer resource is not money — it is the
-            8–12 weekly hours you will spend for months. A course costing \u20b940,000
+            8–12 weekly hours you will spend for months. A course costing ₹40,000
             less but teaching a 2023 stack does not save money; it costs the same hours
             and returns an analyst-band outcome.
           </Callout>
