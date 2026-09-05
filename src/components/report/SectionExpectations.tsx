@@ -1,5 +1,5 @@
 import { Reveal } from "@/components/Reveal";
-import { Callout, H3, Prose, SectionCard } from "./Shell";
+import { Callout, H3, Prose, SectionCard, ExperienceNote } from "./Shell";
 
 const profiles = [
   {
@@ -123,6 +123,12 @@ export function SectionExpectations() {
         </>
       }
     >
+      <div className="mb-6">
+        <ExperienceNote label="Where I get these expectations from">
+          <p>These profiles come from the loops and conversations I have been closest to, cross-checked against public salary aggregates rather than the other way round. When a candidate tells me a number from an ad and I show them the median for the same title and city, the gap is usually two to three times.</p>
+          <p>The pattern I would bet on: company type sets your band before you open your mouth, and your evaluation and debugging story decides where inside that band you land.</p>
+        </ExperienceNote>
+      </div>
       <div className="space-y-10">
         <div className="grid gap-4 md:grid-cols-2">
           {profiles.map((p, i) => (

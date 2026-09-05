@@ -8,8 +8,7 @@ import {
   SectionCard,
   TableFrame,
   Td,
-  Th,
-} from "./Shell";
+  Th, ExperienceNote } from "./Shell";
 
 type Module = {
   n: number;
@@ -332,6 +331,12 @@ export function SectionLogicMojo() {
         </>
       }
     >
+      <div className="mb-6">
+        <ExperienceNote label="How I judged the program published by the site you are on">
+          <p>I applied the same twelve questions here that I applied everywhere else, and I have kept the case to what the program includes and what the 2026 market pays for. There are no outcome figures in this section, because I cannot verify an individual's offer letter and I will not present one as proof.</p>
+          <p>Where a detail changes between cohorts — fee, batch dates, exact career-support inclusions — I have marked it to confirm on the live page rather than freezing a number that may be wrong by the time you read this.</p>
+        </ExperienceNote>
+      </div>
       <div className="space-y-12">
         {/* 1 — Curriculum */}
         <div className="space-y-5">

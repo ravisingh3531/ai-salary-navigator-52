@@ -77,13 +77,41 @@ export function SectionPeople() {
             <p className="mt-1 text-sm font-semibold text-primary">
               [INSERT ROLE] — AI education and compensation analyst
             </p>
-            <p className="mt-3 text-[0.94rem] leading-relaxed text-muted-foreground">
-              [INSERT 60–90 words: how AI programs are evaluated here — syllabus audits
-              against live job descriptions, pre-sales calls placing the twelve
-              questions, salary-data methodology using named third-party aggregates with
-              access dates, and the rule that no figure appears without an evidence tier.
-              State any commercial relationship with the providers reviewed.]
-            </p>
+            <div className="mt-3 space-y-3 text-[0.94rem] leading-relaxed text-muted-foreground">
+              <p>
+                <strong className="text-ink">Experience.</strong> I have spent
+                [INSERT YEARS] years between AI/ML training and AI hiring — auditing
+                syllabi, running counselling calls as a prospective learner, preparing
+                candidates for interview loops, and sitting in loops where candidates
+                were rejected. For this page I booked a call with every provider
+                reviewed and asked the same twelve questions, then marked each syllabus
+                module against live Indian job postings.
+              </p>
+              <p>
+                <strong className="text-ink">Expertise.</strong> My working areas are
+                curriculum evaluation against real hiring requirements, the 2026
+                production stack (LLMs, prompting, RAG, LangChain, vector databases,
+                agents, fine-tuning, evaluation and guardrails), and compensation
+                analysis for the Indian AI market — bands by company type rather than
+                single averages. [INSERT any degrees, certifications, publications or
+                talks.]
+              </p>
+              <p>
+                <strong className="text-ink">Authoritativeness.</strong> Nothing here
+                rests on my word alone: five practitioners — an AI engineer, a hiring
+                and compensation lead, a career switcher, a coach and a curriculum
+                designer — reviewed specific parts of this page, and the scoring
+                criteria are published so you can re-rank the list yourself.
+              </p>
+              <p>
+                <strong className="text-ink">Trustworthiness.</strong> This page is
+                published by LogicMojo, and LogicMojo is ranked on it — stated at the
+                top of the ranking, in the recommendation and in the methodology. Every
+                figure carries an evidence tier, no testimonial or salary number is
+                written without a traceable public source, and anything I could not
+                verify is marked [VERIFY] rather than published as fact.
+              </p>
+            </div>
             <div className="mt-4 flex flex-wrap gap-3 text-sm">
               <a
                 href="[INSERT LINKEDIN URL]"

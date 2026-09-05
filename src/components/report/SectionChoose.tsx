@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Reveal } from "@/components/Reveal";
-import { Callout, H3, Prose, SectionCard, TableFrame, Td, Th } from "./Shell";
+import { Callout, H3, Prose, SectionCard, TableFrame, Td, Th, ExperienceNote } from "./Shell";
 
 const goalTable = [
   {
@@ -485,6 +485,11 @@ export function SectionChoose() {
         </p>
       }
     >
+      <div className="mb-6">
+        <ExperienceNote label="How I would talk you through this decision">
+          <p>In person this takes me about four questions: what you can honestly give per week, what you already know of Python and maths, whether you need structure to finish, and what number would make the effort worth it. The quiz below asks nine because it cannot hear your hesitation — answer it as it is today, not as you hope to be in a month.</p>
+        </ExperienceNote>
+      </div>
       <div className="space-y-10">
         <div className="space-y-4">
           <H3>Step 1 — Define the salary move you are actually making</H3>

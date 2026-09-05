@@ -1,4 +1,4 @@
-import { SectionCard, H3, Callout, TableFrame, Th, Td, Pill } from "./Shell";
+import { SectionCard, H3, Callout, TableFrame, Th, Td, Pill, ExperienceNote } from "./Shell";
 
 type Row = {
   rank: number;
@@ -130,6 +130,12 @@ export function SectionSalaryMatrix() {
         </>
       }
     >
+      <div className="mb-6">
+        <ExperienceNote label="How I read this table when someone asks me to choose for them">
+          <p>I read it right to left. Fee and ROI first, because that decides what is even on the table for you. Then the hiring-evidence column, because that is the only column a provider cannot fully control. Curriculum comes last — in 2026 the syllabi have converged, and the differences that show up in interviews are depth of evaluation and guardrails, not topic coverage.</p>
+          <p>One habit from auditing these: whenever a row looked strong on paper, I searched for a single alumnus doing that exact job today. Where I could not find one, the hiring column says so.</p>
+        </ExperienceNote>
+      </div>
       <div className="space-y-8">
         <TableFrame caption="Table 7 — Roles targeted, GenAI depth, hiring evidence, fee and ROI verdict">
           <thead>

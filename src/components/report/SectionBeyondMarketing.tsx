@@ -1,4 +1,4 @@
-import { SectionCard, H3, Callout, TableFrame, Th, Td } from "./Shell";
+import { SectionCard, H3, Callout, TableFrame, Th, Td, ExperienceNote } from "./Shell";
 
 const numbers = [
   {
@@ -113,6 +113,12 @@ export function SectionBeyondMarketing() {
         </>
       }
     >
+      <div className="mb-6">
+        <ExperienceNote label="The line that has cost the most people I have spoken to">
+          <p>“Highest package”. Every time someone has quoted me a life-changing number from an ad, it has been a single outlier, usually a senior hire, sometimes total CTC with stock spread over four years. I now ask providers one question in writing: what is the median fixed component for learners from my background, in the last two cohorts? The quality of the answer tells you more than the brochure.</p>
+          <p>Same with “assistance” versus “guarantee”. I have read the fine print on programs where the guarantee lapsed if you declined one offer, whatever the salary. Read the clause, not the badge.</p>
+        </ExperienceNote>
+      </div>
       <div className="space-y-9">
         <div>
           <H3>Step 1 — Highest vs. average vs. median: four numbers, one that matters</H3>
