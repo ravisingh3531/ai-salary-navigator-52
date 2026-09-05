@@ -160,10 +160,10 @@ function Index() {
             </span>
           </a>
           <nav className="hidden items-center gap-6 text-sm font-medium text-muted-foreground md:flex">
-            <a className="transition-colors hover:text-primary" href="#the-high-salary-ai-skill-stack--what-employers-actually-pay-a-p">
+            <a className="transition-colors hover:text-primary" href="#the-high-salary-ai-skill-stack-what-employers-actually-pay-a">
               Skill stack
             </a>
-            <a className="transition-colors hover:text-primary" href="#ai-salary-by-role-in-india-2026--verified-ranges-not-brochure-nu">
+            <a className="transition-colors hover:text-primary" href="#ai-salary-by-role-in-india-2026-verified-ranges-not-brochure">
               Salary by role
             </a>
             <a className="transition-colors hover:text-primary" href="#in-depth-reviews-all-10-courses-on-one-salary-lens">
@@ -174,7 +174,7 @@ function Index() {
             </a>
           </nav>
           <a
-            href="#ready-to-build-the-skills-that-get-priced-at-the-top-of-the-ban"
+            href="#ready-to-build-the-skills-that-get-priced-at-the-top-of-the-"
             className="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-glow transition-transform duration-200 hover:scale-[1.03]"
           >
             Explore the course
