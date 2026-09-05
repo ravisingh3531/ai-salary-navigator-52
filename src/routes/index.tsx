@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { ArticleMarkdown } from "@/components/ArticleMarkdown";
 import { Reveal } from "@/components/Reveal";
+import { AuthorTrustBar } from "@/components/report/AuthorTrustBar";
 import { SectionMethodology } from "@/components/report/SectionMethodology";
 import { SectionMyRecommendation } from "@/components/report/SectionMyRecommendation";
 import { SectionSalaryMatrix } from "@/components/report/SectionSalaryMatrix";
@@ -37,6 +38,32 @@ const faqSchema = {
   ),
 };
 
+const authorSchema = {
+  "@type": "Person",
+  name: "[INSERT AUTHOR NAME]",
+  jobTitle: "AI curriculum auditor and compensation analyst",
+  url: "[INSERT LINKEDIN URL]",
+  knowsAbout: [
+    "AI course curriculum evaluation",
+    "GenAI hiring requirements",
+    "AI salary benchmarking in India",
+    "Retrieval-augmented generation",
+    "LLM fine-tuning and evaluation",
+  ],
+};
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: title,
+  description,
+  inLanguage: "en-IN",
+  author: authorSchema,
+  reviewedBy: { "@type": "Person", name: "[INSERT REVIEWER NAME]" },
+  publisher: { "@type": "Organization", name: "LogicMojo" },
+  about: "AI courses with the highest salary potential in India",
+};
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -51,6 +78,10 @@ export const Route = createFileRoute("/")({
       {
         type: "application/ld+json",
         children: JSON.stringify(faqSchema),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(articleSchema),
       },
     ],
   }),
@@ -144,6 +175,7 @@ const ranked = [
 
 /** Custom-built sections that live after the markdown blocks. */
 const customToc = [
+  { id: "why-trust-this", heading: "Who wrote this & why you can weigh it" },
   { id: "methodology", heading: "How I researched & ranked these 10 courses" },
   { id: "my-recommendations", heading: "My research-backed recommendation" },
   { id: "why-logicmojo-is-ranked-1", heading: "Why LogicMojo ranks #1 (deep dive)" },
@@ -291,6 +323,8 @@ function Index() {
 
         <div className="relative h-10 bg-background [clip-path:ellipse(75%_100%_at_50%_100%)]" />
       </section>
+
+      <AuthorTrustBar />
 
       {/* Evidence tiers */}
       <section className="mx-auto max-w-6xl px-5 py-14 md:py-18">
