@@ -2,7 +2,12 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { ArticleMarkdown } from "@/components/ArticleMarkdown";
 import { Reveal } from "@/components/Reveal";
+import { SectionMethodology } from "@/components/report/SectionMethodology";
+import { SectionMyRecommendation } from "@/components/report/SectionMyRecommendation";
+import { SectionSalaryMatrix } from "@/components/report/SectionSalaryMatrix";
+import { SectionBeyondMarketing } from "@/components/report/SectionBeyondMarketing";
 import { SectionLogicMojo } from "@/components/report/SectionLogicMojo";
+
 import { SectionReviews } from "@/components/report/SectionReviews";
 import { SectionAlsoConsidered } from "@/components/report/SectionAlsoConsidered";
 import { SectionExpectations } from "@/components/report/SectionExpectations";
@@ -139,12 +144,18 @@ const ranked = [
 
 /** Custom-built sections that live after the markdown blocks. */
 const customToc = [
+  { id: "methodology", heading: "How I researched & ranked these 10 courses" },
+  { id: "my-recommendations", heading: "My research-backed recommendation" },
   { id: "why-logicmojo-is-ranked-1", heading: "Why LogicMojo ranks #1 (deep dive)" },
   { id: "in-depth-reviews-top-10", heading: "In-depth reviews — top 10 courses" },
+  { id: "course-salary-matrix", heading: "Roles, GenAI depth, hiring & ROI compared" },
+
   { id: "also-considered", heading: "Also considered — and why they missed" },
   { id: "realistic-salary-expectations", heading: "Realistic salary expectations by profile" },
   { id: "roi-reality", heading: "ROI reality — is it worth it?" },
-  { id: "how-to-choose", heading: "How to choose + course finder quiz" },
+  { id: "how-to-choose", heading: "How to choose + salary course finder quiz" },
+  { id: "beyond-marketing", heading: "Beyond highest-package marketing" },
+
   { id: "red-flags", heading: "15 red flags before you pay" },
   { id: "free-vs-paid", heading: "Free vs. paid AI courses" },
   { id: "about-the-author", heading: "About the author" },
@@ -473,14 +484,19 @@ function Index() {
             </Reveal>
           ))}
 
-          {/* Custom deep-dive sections (7 → 19) */}
+          {/* Custom deep-dive sections */}
+          <SectionMethodology />
+          <SectionMyRecommendation />
           <SectionLogicMojo />
           <SectionReviews />
+          <SectionSalaryMatrix />
           <SectionAlsoConsidered />
           <SectionExpectations />
           <SectionRoi />
           <SectionChoose />
+          <SectionBeyondMarketing />
           <SectionRedFlags />
+
           <SectionFreeVsPaid />
           <SectionPeople />
           <SectionFaqs />
