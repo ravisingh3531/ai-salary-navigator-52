@@ -137,10 +137,37 @@ const ranked = [
   { n: 10, course: "PW Skills DS + GenAI", note: "Best ultra-affordable entry for freshers" },
 ];
 
+/** Custom-built sections that live after the markdown blocks. */
+const customToc = [
+  { id: "why-logicmojo-is-ranked-1", heading: "Why LogicMojo ranks #1 (deep dive)" },
+  { id: "in-depth-reviews-top-10", heading: "In-depth reviews — top 10 courses" },
+  { id: "also-considered", heading: "Also considered — and why they missed" },
+  { id: "realistic-salary-expectations", heading: "Realistic salary expectations by profile" },
+  { id: "roi-reality", heading: "ROI reality — is it worth it?" },
+  { id: "how-to-choose", heading: "How to choose + course finder quiz" },
+  { id: "red-flags", heading: "15 red flags before you pay" },
+  { id: "free-vs-paid", heading: "Free vs. paid AI courses" },
+  { id: "about-the-author", heading: "About the author" },
+  { id: "expert-reviewers", heading: "Expert reviewers" },
+  { id: "frequently-asked-questions", heading: "37 frequently asked questions" },
+  { id: "final-verdict", heading: "Final verdict" },
+];
+
 function Index() {
-  const { h1, intro, sections } = useMemo(() => parseArticle(raw), []);
+  const { h1, intro, sections: allSections } = useMemo(() => parseArticle(raw), []);
   const [active, setActive] = useState<string>("");
   const [progress, setProgress] = useState(0);
+
+  /** Markdown sections up to (not including) the reviews — the rest is custom UI. */
+  const sections = useMemo(() => {
+    const cut = allSections.findIndex((s) => s.heading.startsWith("In-Depth Reviews"));
+    return cut === -1 ? allSections : allSections.slice(0, cut);
+  }, [allSections]);
+
+  const toc = useMemo(
+    () => [...sections.map((s) => ({ id: s.id, heading: s.heading })), ...customToc],
+    [sections],
+  );
 
   useEffect(() => {
     const onScroll = () => {
@@ -161,12 +188,13 @@ function Index() {
       },
       { rootMargin: "-20% 0px -70% 0px" },
     );
-    for (const s of sections) {
+    for (const s of toc) {
       const el = document.getElementById(s.id);
       if (el) observer.observe(el);
     }
     return () => observer.disconnect();
-  }, [sections]);
+  }, [toc]);
+
 
   return (
     <div className="min-h-screen bg-background">
