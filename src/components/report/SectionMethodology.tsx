@@ -122,7 +122,7 @@ export function SectionMethodology() {
       <div className="space-y-9">
         <div>
           <H3>The nine scoring criteria and their weights</H3>
-          <TableFrame className="mt-4">
+          <TableFrame>
             <thead>
               <tr>
                 <Th>Criterion</Th>
@@ -148,7 +148,7 @@ export function SectionMethodology() {
 
         <div>
           <H3>What was cross-checked, and how far each source can be trusted</H3>
-          <TableFrame className="mt-4">
+          <TableFrame>
             <thead>
               <tr>
                 <Th>Source</Th>
