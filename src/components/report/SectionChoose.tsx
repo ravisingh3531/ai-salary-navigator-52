@@ -66,47 +66,84 @@ type Q = { key: string; q: string; options: { label: string; value: string }[] }
 
 const quiz: Q[] = [
   {
-    key: "background",
-    q: "What is your background?",
-    options: [
-      { label: "Non-technical", value: "nontech" },
-      { label: "Some coding", value: "some" },
-      { label: "Software engineer", value: "swe" },
-      { label: "Data analyst", value: "analyst" },
-      { label: "Student", value: "student" },
-    ],
-  },
-  {
     key: "experience",
     q: "How much work experience do you have?",
     options: [
-      { label: "Fresher", value: "fresher" },
+      { label: "Student / fresher", value: "fresher" },
+      { label: "0–2 years", value: "0-2" },
       { label: "2–5 years", value: "2-5" },
       { label: "5–10 years", value: "5-10" },
       { label: "10+ years", value: "10+" },
     ],
   },
   {
-    key: "goal",
-    q: "What salary move are you actually making?",
+    key: "education",
+    q: "What is your educational background?",
     options: [
-      { label: "Engineering-band switch", value: "eng" },
-      { label: "Services → product", value: "product" },
-      { label: "Promotion / internal mobility", value: "promo" },
-      { label: "Analyst → DS/ML", value: "ds" },
-      { label: "Domain premium", value: "domain" },
-      { label: "Testing the waters", value: "test" },
+      { label: "CS / IT engineering", value: "cs" },
+      { label: "Non-CS engineering", value: "noncs" },
+      { label: "Maths / statistics / science", value: "science" },
+      { label: "Commerce / arts / other", value: "other" },
+    ],
+  },
+  {
+    key: "salaryGoal",
+    q: "What annual fixed pay are you targeting next?",
+    options: [
+      { label: "Up to ₹8 LPA", value: "u8" },
+      { label: "₹8–15 LPA", value: "8-15" },
+      { label: "₹15–30 LPA", value: "15-30" },
+      { label: "₹30 LPA+", value: "30+" },
     ],
   },
   {
     key: "budget",
-    q: "What is your real budget?",
+    q: "What is your real course budget?",
     options: [
       { label: "Free only", value: "free" },
       { label: "Under ₹15K", value: "u15" },
       { label: "₹15K–₹60K", value: "15-60" },
       { label: "₹60K–₹1.5L", value: "60-150" },
       { label: "₹1.5L+", value: "150+" },
+    ],
+  },
+  {
+    key: "placement",
+    q: "How important is structured placement support?",
+    options: [
+      { label: "Critical — it decides my choice", value: "critical" },
+      { label: "Important, but not decisive", value: "important" },
+      { label: "Not needed — I run my own job search", value: "no" },
+    ],
+  },
+  {
+    key: "spec",
+    q: "Which specialisation are you aiming at?",
+    options: [
+      { label: "GenAI / LLM engineering", value: "genai" },
+      { label: "Core ML / deep learning", value: "ml" },
+      { label: "Data science / analytics", value: "ds" },
+      { label: "MLOps / AI infrastructure", value: "mlops" },
+      { label: "Still deciding", value: "unsure" },
+    ],
+  },
+  {
+    key: "foundation",
+    q: "How strong are your Python and ML foundations today?",
+    options: [
+      { label: "None — complete beginner", value: "none" },
+      { label: "Basic Python, no ML", value: "basic" },
+      { label: "Comfortable Python + some ML", value: "mid" },
+      { label: "Strong — I build ML already", value: "strong" },
+    ],
+  },
+  {
+    key: "mode",
+    q: "Which learning mode fits your life?",
+    options: [
+      { label: "Live online cohort (IST)", value: "live" },
+      { label: "Weekend mentor-led", value: "weekend" },
+      { label: "Fully self-paced", value: "self" },
     ],
   },
   {
@@ -119,102 +156,165 @@ const quiz: Q[] = [
       { label: "15+", value: "15+" },
     ],
   },
-  {
-    key: "priority",
-    q: "What matters most to you?",
-    options: [
-      { label: "Deepest skills", value: "skills" },
-      { label: "Credential", value: "credential" },
-      { label: "Placement operations", value: "placement" },
-      { label: "Lowest cost", value: "cost" },
-    ],
-  },
-  {
-    key: "style",
-    q: "How do you learn best?",
-    options: [
-      { label: "Live cohort", value: "live" },
-      { label: "Self-paced", value: "self" },
-      { label: "Weekend mentor", value: "weekend" },
-    ],
-  },
-  {
-    key: "discipline",
-    q: "Your honest history with online courses?",
-    options: [
-      { label: "Finished most", value: "finished" },
-      { label: "Abandoned one", value: "one" },
-      { label: "Abandoned two or more", value: "two" },
-    ],
-  },
 ];
 
-function recommend(a: Record<string, string>) {
-  if (a["discipline"] === "two")
-    return {
-      pick: "Any live cohort — LogicMojo, Scaler or Great Learning",
-      why: "Two abandoned courses is evidence, not a character flaw. Structure is the product you need to buy.",
-    };
+type Result = {
+  pick: string;
+  why: string;
+  skills: string[];
+  evidence: string;
+  ctaLabel: string;
+  ctaHref: string;
+};
+
+const logicmojo = (why: string): Result => ({
+  pick: "LogicMojo — AI & Machine Learning Course",
+  why,
+  skills: [
+    "Python, maths onboarding, classical ML with correct evaluation",
+    "Deep learning in PyTorch, NLP, transformers",
+    "LLMs, prompt engineering, production RAG, LangChain / LangGraph",
+    "Vector databases, LoRA / QLoRA fine-tuning, agents + MCP",
+    "Evaluation, guardrails, MLOps / LLMOps, AI system design",
+  ],
+  evidence:
+    "Career assistance with role targeting, AI-specific mock interviews and portfolio review [VERIFY current inclusions]. Named learner stories are published at logicmojo.com/success-story — course-reported (Tier B) evidence, not a placement guarantee.",
+  ctaLabel: "Read verified success stories",
+  ctaHref: "https://logicmojo.com/success-story",
+});
+
+function recommend(a: Record<string, string>): Result {
+  const goHigh = a["salaryGoal"] === "15-30" || a["salaryGoal"] === "30+";
+
   if (a["budget"] === "free")
     return {
-      pick: "DeepLearning.AI + Hugging Face + Kaggle",
-      why: "Free is the rational choice when you can supply the structure yourself — build in public to compensate for the missing portfolio.",
+      pick: "DeepLearning.AI + Hugging Face + Kaggle (free stack)",
+      why: "With a zero budget the rational path is free foundations plus building in public. You supply the structure, sequencing and accountability a paid cohort would have supplied.",
+      skills: [
+        "Python, ML and deep-learning foundations",
+        "Short, current GenAI courses",
+        "Self-built RAG and agent projects, deployed publicly",
+      ],
+      evidence:
+        "No placement layer at all — Tier A verifiable only in the sense that the content is public. Your portfolio is the entire evidence you will have.",
+      ctaLabel: "See the free 2026 learning stack",
+      ctaHref: "#free-vs-paid",
     };
+
   if (a["budget"] === "u15")
     return {
-      pick: "PW Skills",
-      why: "Lowest-risk structured entry. Treat it as your first step, then reinvest in depth.",
+      pick: "PW Skills — Data Science with Generative AI",
+      why: "Lowest-risk structured entry inside your budget. Treat it as step one toward analyst or junior data roles, then reinvest in depth once you are earning.",
+      skills: [
+        "Python, SQL, statistics",
+        "Classical ML, introductory deep learning",
+        "Introductory GenAI",
+      ],
+      evidence:
+        "Basic job-readiness support, course-reported (Tier B). Not an engineering-band curriculum — expect a second, deeper course later.",
+      ctaLabel: "Compare fees and ROI",
+      ctaHref: "#course-salary-matrix",
     };
-  if (a["priority"] === "placement" && a["budget"] === "150+" && a["time"] === "15+")
+
+  if (a["placement"] === "critical" && a["budget"] === "150+" && a["time"] === "15+")
     return {
-      pick: "Scaler",
-      why: "You can afford and sustain the strongest placement operation available online in India.",
+      pick: "Scaler — Data Science, ML & AI Program",
+      why: "You can afford the premium band and sustain 15+ hours a week, and placement support is your decisive factor — that is the case where the largest structured career operation in this set earns its fee.",
+      skills: [
+        "Strong ML and DL core with correct evaluation",
+        "Growing GenAI track",
+        "Interview preparation and structured referrals",
+      ],
+      evidence:
+        "Publishes outcome reporting — read the denominator, window and fixed-vs-total-CTC definition before you rely on it (Tier B).",
+      ctaLabel: "Read the full Scaler review",
+      ctaHref: "#in-depth-reviews-top-10",
     };
-  if (a["priority"] === "credential" || a["goal"] === "promo")
+
+  if (a["mode"] === "weekend" && a["budget"] !== "15-60")
     return {
-      pick: a["goal"] === "promo" ? "Simplilearn or upGrad" : "upGrad or Great Learning",
-      why: "Your lever is recognition inside a process that weighs formal qualifications.",
+      pick: "Great Learning — PGP-AIML (UT Austin / Great Lakes)",
+      why: "Weekend mentor-led delivery has the highest completion rate for professionals with fixed weekdays, and the university-badged credential helps inside formal shortlisting processes.",
+      skills: [
+        "Applied ML and deep learning",
+        "Applied GenAI modules",
+        "Mentor-led project work",
+      ],
+      evidence:
+        "Career services plus a recognised credential, course-reported (Tier B). Production RAG, agents and MLOps are lighter than in specialist programs.",
+      ctaLabel: "Read the full review",
+      ctaHref: "#in-depth-reviews-top-10",
     };
-  if (a["style"] === "self")
+
+  if (a["mode"] === "self")
     return {
-      pick: "Udacity or the IBM AI Engineering certificate",
-      why: "Self-paced with human project review is the only self-paced format that produces defensible work.",
+      pick: "Udacity Nanodegree, with IBM AI Engineering as the cheaper alternative",
+      why: "If self-paced is genuinely the only mode that fits, choose the one format where a human reviews your project code — that review is what turns self-paced study into defensible work.",
+      skills: [
+        "Applied ML and deployment-focused projects",
+        "Selected GenAI nanodegrees",
+        "Human code review on submissions",
+      ],
+      evidence:
+        "Career resources but no active placement pipeline. Portfolio depth and the job search are entirely on you.",
+      ctaLabel: "Compare self-paced options",
+      ctaHref: "#course-salary-matrix",
     };
-  if (a["style"] === "weekend")
+
+  if (a["experience"] === "10+" && a["placement"] === "no")
     return {
-      pick: "Great Learning",
-      why: "Weekend mentor-led delivery has the highest completion rate for professionals with fixed weekends.",
+      pick: "upGrad (IIIT-B) or Simplilearn (Purdue / IBM)",
+      why: "At 10+ years with no need for placement services, your lever is recognition inside a promotion or reimbursement process — that is what a university- or industry-badged credential actually buys.",
+      skills: [
+        "Applied ML and AI literacy for leadership scope",
+        "GenAI overview modules",
+        "Capstone with a business framing",
+      ],
+      evidence:
+        "Credential recognition and recruiter networks, course-reported (Tier B). Depth on agents, retrieval quality and MLOps is limited.",
+      ctaLabel: "Read both reviews",
+      ctaHref: "#in-depth-reviews-top-10",
     };
-  if (
-    (a["goal"] === "eng" || a["goal"] === "product" || a["goal"] === "ds") &&
-    (a["time"] === "10-15" || a["time"] === "15+")
-  )
-    return {
-      pick: "LogicMojo",
-      why: "Engineering-band switch with 10+ weekly hours at mid-band pricing is exactly what this composite ranks first.",
-    };
-  return {
-    pick: "LogicMojo, with DeepLearning.AI as free preparation",
-    why: "Build foundations free, then buy the structure, review and premium layers that move the band.",
-  };
+
+  if (a["time"] === "u6")
+    return logicmojo(
+      "Under six hours a week is the real constraint, so start with the batch-deferral and recordings path in a live program rather than a fixed-deadline premium cohort — and plan for a longer timeline than the brochure states. Live delivery with catch-up structure is what keeps a low-hours learner from quietly dropping out.",
+    );
+
+  if (a["foundation"] === "none" || a["foundation"] === "basic")
+    return logicmojo(
+      goHigh
+        ? "You are starting from beginner foundations but targeting an engineering band, which is exactly the gap this program is built for: Python and maths onboarding first, then classical ML with correct evaluation, then the 2026 GenAI stack that the higher bands price for — with deployed reviewed projects and AI interview preparation at the end."
+        : "Beginner foundations plus a realistic first target means you need sequencing more than prestige: Python and maths onboarding, classical ML taught with correct evaluation, then applied GenAI, with a deployed reviewed portfolio to show for it.",
+    );
+
+  if (a["spec"] === "genai" || a["spec"] === "mlops" || goHigh)
+    return logicmojo(
+      "Your target sits in the layers that decide 2026 pricing — LLM engineering, production RAG, agents and MCP, evaluation and MLOps. This is the only program in the set rated deep or comprehensive across all of those, and it pairs them with deployed reviewed projects and AI system-design interview preparation.",
+    );
+
+  return logicmojo(
+    "On your combination of goal, budget, mode and hours, the highest capability per rupee in this set comes from live IST delivery plus the full premium skill stack, deployed reviewed projects, AI interview preparation and structured career assistance — with DeepLearning.AI as free preparation beforehand if you want to arrive warmed up.",
+  );
 }
 
 function Quiz() {
   const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [open, setOpen] = useState(false);
   const done = quiz.every((q) => answers[q.key]);
   const result = done ? recommend(answers) : null;
 
   return (
     <div className="rounded-2xl border border-border bg-background p-5 md:p-6">
       <p className="text-[0.7rem] font-bold uppercase tracking-[0.16em] text-primary">
-        Step 6 · AI Course Finder
+        Step 6 · AI Salary Course Finder
       </p>
       <h3 className="mt-1.5 font-display text-xl font-bold text-ink">
-        Eight questions to one shortlist
+        Nine questions to your best-fit high-salary AI course
       </h3>
       <p className="mt-2 text-sm text-muted-foreground">
-        Nothing is stored or sent anywhere. Answer honestly — especially the last
-        question.
+        Nothing is stored or sent anywhere. Answer honestly — especially the
+        budget, foundations and weekly-hours questions.
       </p>
 
       <div className="mt-6 space-y-5">
@@ -250,35 +350,127 @@ function Quiz() {
         ))}
       </div>
 
-      <div className="mt-7">
-        {result ? (
-          <div className="rounded-2xl bg-hero-gradient p-5 shadow-glow">
-            <p className="text-[0.7rem] font-bold uppercase tracking-[0.16em] text-primary-foreground/80">
-              Your shortlist
-            </p>
-            <p className="mt-1.5 font-display text-2xl font-bold text-primary-foreground">
+      <div className="mt-7 flex flex-wrap items-center gap-3">
+        <button
+          type="button"
+          disabled={!done}
+          onClick={() => setOpen(true)}
+          className={`rounded-full px-5 py-2.5 text-sm font-bold transition-transform duration-200 ${
+            done
+              ? "bg-primary text-primary-foreground shadow-glow hover:scale-[1.03]"
+              : "cursor-not-allowed bg-surface-strong text-muted-foreground"
+          }`}
+        >
+          {done
+            ? "Show my recommended course"
+            : `Answer all nine questions (${Object.keys(answers).length}/9)`}
+        </button>
+        {Object.keys(answers).length > 0 ? (
+          <button
+            type="button"
+            onClick={() => setAnswers({})}
+            className="rounded-full border border-border px-4 py-2 text-xs font-bold text-muted-foreground"
+          >
+            Reset answers
+          </button>
+        ) : null}
+      </div>
+
+      {open && result ? (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Your recommended AI course"
+          className="fixed inset-0 z-[60] flex items-end justify-center bg-ink/60 p-0 backdrop-blur-sm sm:items-center sm:p-6"
+        >
+          <button
+            type="button"
+            aria-label="Close"
+            onClick={() => setOpen(false)}
+            className="absolute inset-0 h-full w-full cursor-default"
+          />
+          <div className="relative max-h-[88vh] w-full max-w-xl overflow-y-auto rounded-t-3xl bg-card p-6 shadow-lift sm:rounded-3xl md:p-8">
+            <div className="flex items-start justify-between gap-4">
+              <p className="text-[0.7rem] font-bold uppercase tracking-[0.16em] text-primary">
+                Your best-fit course
+              </p>
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-border text-muted-foreground"
+                aria-label="Close recommendation"
+              >
+                ✕
+              </button>
+            </div>
+            <h4 className="mt-2 font-display text-2xl font-bold leading-tight text-ink">
               {result.pick}
+            </h4>
+            <div className="mt-3 h-1 w-20 rounded-full bg-hero-gradient" />
+
+            <p className="mt-5 text-[0.7rem] font-bold uppercase tracking-[0.16em] text-muted-foreground">
+              Why this fits you
             </p>
-            <p className="mt-2 text-sm leading-relaxed text-primary-foreground/85">
+            <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
               {result.why}
             </p>
-            <button
-              type="button"
-              onClick={() => setAnswers({})}
-              className="mt-4 rounded-full border border-primary-foreground/35 px-4 py-2 text-xs font-bold text-primary-foreground"
-            >
-              Start again
-            </button>
+
+            <p className="mt-5 text-[0.7rem] font-bold uppercase tracking-[0.16em] text-muted-foreground">
+              Salary-relevant skills you would build
+            </p>
+            <ul className="mt-2 space-y-2">
+              {result.skills.map((s) => (
+                <li
+                  key={s}
+                  className="flex gap-2.5 text-sm leading-relaxed text-muted-foreground"
+                >
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                  <span>{s}</span>
+                </li>
+              ))}
+            </ul>
+
+            <p className="mt-5 text-[0.7rem] font-bold uppercase tracking-[0.16em] text-muted-foreground">
+              Salary &amp; placement evidence
+            </p>
+            <p className="mt-1.5 rounded-2xl bg-surface p-4 text-sm leading-relaxed text-muted-foreground">
+              {result.evidence}
+            </p>
+
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a
+                href={result.ctaHref}
+                {...(result.ctaHref.startsWith("http")
+                  ? { target: "_blank", rel: "noopener" }
+                  : {})}
+                className="rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground shadow-glow"
+              >
+                {result.ctaLabel}
+              </a>
+              <button
+                type="button"
+                onClick={() => {
+                  setOpen(false);
+                  setAnswers({});
+                }}
+                className="rounded-full border border-border px-5 py-2.5 text-sm font-semibold text-muted-foreground"
+              >
+                Retake the quiz
+              </button>
+            </div>
+            <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
+              This is guidance from a fixed rule set, not advice about your
+              individual case, and it is not a promise of any salary or placement
+              outcome. Verify current fees, syllabus and career-support inclusions
+              on the provider's own page before enrolling.
+            </p>
           </div>
-        ) : (
-          <p className="rounded-2xl bg-surface p-4 text-sm font-medium text-muted-foreground">
-            Answer all eight questions and your shortlist appears here.
-          </p>
-        )}
-      </div>
+        </div>
+      ) : null}
     </div>
   );
 }
+
 
 export function SectionChoose() {
   return (
