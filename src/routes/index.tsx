@@ -153,7 +153,9 @@ const customToc = [
   { id: "also-considered", heading: "Also considered — and why they missed" },
   { id: "realistic-salary-expectations", heading: "Realistic salary expectations by profile" },
   { id: "roi-reality", heading: "ROI reality — is it worth it?" },
-  { id: "how-to-choose", heading: "How to choose + course finder quiz" },
+  { id: "how-to-choose", heading: "How to choose + salary course finder quiz" },
+  { id: "beyond-marketing", heading: "Beyond highest-package marketing" },
+
   { id: "red-flags", heading: "15 red flags before you pay" },
   { id: "free-vs-paid", heading: "Free vs. paid AI courses" },
   { id: "about-the-author", heading: "About the author" },
