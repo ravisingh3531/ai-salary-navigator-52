@@ -1,4 +1,4 @@
-import { SectionCard, H3, Prose, Callout, TableFrame, Th, Td, Pill } from "./Shell";
+import { SectionCard, H3, Callout, TableFrame, Th, Td, Pill } from "./Shell";
 
 const criteria = [
   {
