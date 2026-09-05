@@ -413,7 +413,8 @@ function Index() {
               On this page
             </p>
             <nav className="max-h-[70vh] space-y-0.5 overflow-y-auto pr-1">
-              {sections.map((s) => (
+              {toc.map((s) => (
+
                 <a
                   key={s.id}
                   href={`#${s.id}`}
