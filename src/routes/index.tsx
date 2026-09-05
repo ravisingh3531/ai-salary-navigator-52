@@ -41,7 +41,7 @@ function parseArticle(markdown: string) {
   const withoutH1 = lines.filter((l) => !l.startsWith("# ")).join("\n");
 
   const parts = withoutH1.split(/\n(?=## )/);
-  const intro = parts[0].replace(/^---$|^\s*---\s*$/gm, "").trim();
+  const intro = (parts[0] ?? "").replace(/^---$|^\s*---\s*$/gm, "").trim();
 
   const sections: Section[] = [];
   for (const part of parts.slice(1)) {
