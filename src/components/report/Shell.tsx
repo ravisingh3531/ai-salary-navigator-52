@@ -161,3 +161,28 @@ export function Pill({
     </span>
   );
 }
+
+/**
+ * First-person field note. Used to attach lived experience to a claim so the
+ * reader can see who is speaking and on what basis.
+ */
+export function ExperienceNote({
+  label = "From my own experience",
+  children,
+}: {
+  label?: string;
+  children: ReactNode;
+}) {
+  return (
+    <div className="relative overflow-hidden rounded-2xl border border-primary/20 bg-accent/40 p-5">
+      <div className="absolute inset-y-0 left-0 w-1 bg-hero-gradient" />
+      <p className="flex items-center gap-2 text-[0.7rem] font-bold uppercase tracking-[0.16em] text-primary">
+        <span aria-hidden="true">✍️</span>
+        {label}
+      </p>
+      <div className="mt-2 space-y-3 text-[0.95rem] leading-relaxed text-ink">
+        {children}
+      </div>
+    </div>
+  );
+}
