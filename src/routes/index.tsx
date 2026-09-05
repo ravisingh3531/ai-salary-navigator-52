@@ -144,8 +144,12 @@ const ranked = [
 
 /** Custom-built sections that live after the markdown blocks. */
 const customToc = [
+  { id: "methodology", heading: "How I researched & ranked these 10 courses" },
+  { id: "my-recommendations", heading: "My research-backed recommendation" },
   { id: "why-logicmojo-is-ranked-1", heading: "Why LogicMojo ranks #1 (deep dive)" },
   { id: "in-depth-reviews-top-10", heading: "In-depth reviews — top 10 courses" },
+  { id: "course-salary-matrix", heading: "Roles, GenAI depth, hiring & ROI compared" },
+
   { id: "also-considered", heading: "Also considered — and why they missed" },
   { id: "realistic-salary-expectations", heading: "Realistic salary expectations by profile" },
   { id: "roi-reality", heading: "ROI reality — is it worth it?" },
