@@ -2,7 +2,12 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { ArticleMarkdown } from "@/components/ArticleMarkdown";
 import { Reveal } from "@/components/Reveal";
+import { SectionMethodology } from "@/components/report/SectionMethodology";
+import { SectionMyRecommendation } from "@/components/report/SectionMyRecommendation";
+import { SectionSalaryMatrix } from "@/components/report/SectionSalaryMatrix";
+import { SectionBeyondMarketing } from "@/components/report/SectionBeyondMarketing";
 import { SectionLogicMojo } from "@/components/report/SectionLogicMojo";
+
 import { SectionReviews } from "@/components/report/SectionReviews";
 import { SectionAlsoConsidered } from "@/components/report/SectionAlsoConsidered";
 import { SectionExpectations } from "@/components/report/SectionExpectations";
