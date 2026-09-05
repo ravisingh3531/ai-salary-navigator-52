@@ -484,14 +484,19 @@ function Index() {
             </Reveal>
           ))}
 
-          {/* Custom deep-dive sections (7 → 19) */}
+          {/* Custom deep-dive sections */}
+          <SectionMethodology />
+          <SectionMyRecommendation />
           <SectionLogicMojo />
           <SectionReviews />
+          <SectionSalaryMatrix />
           <SectionAlsoConsidered />
           <SectionExpectations />
           <SectionRoi />
           <SectionChoose />
+          <SectionBeyondMarketing />
           <SectionRedFlags />
+
           <SectionFreeVsPaid />
           <SectionPeople />
           <SectionFaqs />
