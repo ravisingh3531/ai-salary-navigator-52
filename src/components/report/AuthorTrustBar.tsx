@@ -9,7 +9,7 @@ const experience = [
   {
     icon: "🎧",
     title: "I sat through the sales calls myself",
-    text: "For every program on this page I booked a counselling call as a prospective learner and asked the same twelve questions — fee inclusive of taxes, who teaches live, how many mentor hours are real, what \"placement assistance\" covers contractually. What was answered on record is quoted. What was dodged is written down as dodged.",
+    text: "For every program on this page I booked a counselling call as a prospective learner and asked the same twelve questions — fee inclusive of taxes, who teaches live, how many mentor hours are real, what “placement assistance” covers contractually. What was answered on record is quoted. What was dodged is written down as dodged.",
   },
   {
     icon: "🧾",
