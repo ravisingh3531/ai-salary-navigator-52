@@ -1,5 +1,5 @@
 import { Reveal } from "@/components/Reveal";
-import { Callout, SectionCard } from "./Shell";
+import { Callout, SectionCard, ExperienceNote } from "./Shell";
 
 const flags = [
   ["Guaranteed job or guaranteed salary", "No provider controls an employer's hiring decision — the guarantee is either conditional in the fine print or meaningless."],
@@ -32,6 +32,11 @@ export function SectionRedFlags() {
         </p>
       }
     >
+      <div className="mb-6">
+        <ExperienceNote label="Every flag here cost someone something">
+          <p>I am not listing these from a compliance checklist. Each one comes from a call I sat on, fine print I read, or a candidate who arrived at an interview believing something a brochure had implied. If a program trips two or more of these, I would walk — and I have advised people to.</p>
+        </ExperienceNote>
+      </div>
       <div className="space-y-6">
         <ul className="grid gap-3 md:grid-cols-2">
           {flags.map(([flag, tell], i) => (

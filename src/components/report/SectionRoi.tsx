@@ -1,5 +1,5 @@
 import { Reveal } from "@/components/Reveal";
-import { Callout, Prose, SectionCard } from "./Shell";
+import { Callout, Prose, SectionCard, ExperienceNote } from "./Shell";
 
 const scenarios = [
   {
@@ -100,6 +100,12 @@ export function SectionRoi() {
         </>
       }
     >
+      <div className="mb-6">
+        <ExperienceNote label="What my own ROI maths gets wrong most often">
+          <p>When I model these, I am consistently too optimistic about time, not money. Fees are knowable; the six-to-nine months of evenings, the gap between finishing and the first offer, and the hikes that arrive at the next appraisal instead of the next job are what break the payback estimate.</p>
+          <p>So I keep the negative case in view: the learner who stops in month three has spent the fee and gained no market value. I have watched that happen more often than the headline outcome, which is why it sits in the scenarios below rather than in a footnote.</p>
+        </ExperienceNote>
+      </div>
       <div className="space-y-8">
         <div className="grid gap-4 md:grid-cols-2">
           {scenarios.map((s, i) => (

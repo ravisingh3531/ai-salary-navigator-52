@@ -1,4 +1,4 @@
-import { SectionCard, H3, Callout, TableFrame, Th, Td, Pill } from "./Shell";
+import { SectionCard, H3, Callout, TableFrame, Th, Td, Pill, ExperienceNote } from "./Shell";
 
 const criteria = [
   {
@@ -119,6 +119,12 @@ export function SectionMethodology() {
         </>
       }
     >
+      <div className="mb-6">
+        <ExperienceNote label="How I built this scorecard">
+          <p>I started with a spreadsheet and no weights. I listed every criterion I had ever argued about with a hiring manager, then cut the ones I could not evidence. Weighting came last, and it came from rejection patterns: candidates I have seen fail loops mostly failed on evaluation depth and project defensibility, so curriculum depth, GenAI relevance and projects carry more than brand or fee.</p>
+          <p>The uncomfortable part of doing this honestly is that the sources contradict each other. A provider's “average package” and the same role's median on a public aggregate were rarely within touching distance of one another. Where they clashed, I published both and told you which one I would plan my finances around.</p>
+        </ExperienceNote>
+      </div>
       <div className="space-y-9">
         <div>
           <H3>The nine scoring criteria and their weights</H3>

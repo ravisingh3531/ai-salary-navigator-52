@@ -1,4 +1,4 @@
-import { Callout, Prose, SectionCard, TableFrame, Td, Th } from "./Shell";
+import { Callout, Prose, SectionCard, TableFrame, Td, Th, ExperienceNote } from "./Shell";
 
 const freeStack = [
   {
@@ -66,6 +66,12 @@ export function SectionFreeVsPaid() {
         </>
       }
     >
+      <div className="mb-6">
+        <ExperienceNote label="I still send people to the free stack first">
+          <p>It costs me nothing to admit this: a disciplined learner can reach interview-ready on free material. I have seen it done. What free material does not give you is a deadline, someone who notices you stopped, and a mock interview with a person who has rejected candidates for a living.</p>
+          <p>So my advice is unchanged: spend two weeks on the free path below. If you are still moving at the end of it, you may not need to pay at all. If you stalled, you have learned what you are actually buying.</p>
+        </ExperienceNote>
+      </div>
       <div className="space-y-7">
         <TableFrame caption="The 2026 free stack, in the order to use it">
           <thead>

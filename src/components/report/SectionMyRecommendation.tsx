@@ -1,4 +1,4 @@
-import { SectionCard, H3, Callout, Pill } from "./Shell";
+import { SectionCard, H3, Callout, Pill, ExperienceNote } from "./Shell";
 import { Reveal } from "@/components/Reveal";
 
 const reasons = [
@@ -80,6 +80,13 @@ export function SectionMyRecommendation() {
         </>
       }
     >
+      <div className="mb-6">
+        <ExperienceNote label="Why I am comfortable putting my name to this pick">
+          <p>I am recommending the program published by the site you are reading, so I have set the bar higher rather than lower. I have written every reason below as something you can check yourself in one call — module list, live-teaching split, mentor hours, what the career support actually includes — rather than as a claim you have to take from me.</p>
+          <p>My honest reasoning: for a beginner, the failure mode I see most is not a weak syllabus, it is stopping in month three. What tips that for people is scheduled live sessions, a mentor who notices when you disappear, and interview practice booked into the calendar. That is what I weighted here.</p>
+          <p>If a claim below does not survive your own call, treat that as the answer and pick differently — the runner-ups are listed for exactly that reason.</p>
+        </ExperienceNote>
+      </div>
       <div className="space-y-9">
         <div className="rounded-3xl bg-hero-gradient p-6 shadow-glow md:p-8">
           <div className="flex flex-wrap items-center gap-3">

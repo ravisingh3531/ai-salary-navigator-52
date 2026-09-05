@@ -1,4 +1,4 @@
-import { Callout, Prose, SectionCard } from "./Shell";
+import { Callout, Prose, SectionCard, ExperienceNote } from "./Shell";
 
 const top3 = [
   {
@@ -34,6 +34,11 @@ export function SectionVerdict() {
       kicker="Section 19 · Final verdict"
       title="Final Verdict — Which AI Course Gives the Highest Salary in 2026?"
     >
+      <div className="mb-6">
+        <ExperienceNote label="What I would do if I were starting again in 2026">
+          <p>I would stop optimising the choice of course and start optimising what I could show. The people I know who moved bands did it on two defensible projects, a clear evaluation story and stubborn application volume — with the course as the thing that kept them on schedule.</p>
+        </ExperienceNote>
+      </div>
       <div className="space-y-7">
         <div className="grid gap-4 md:grid-cols-3">
           {top3.map((t) => (
