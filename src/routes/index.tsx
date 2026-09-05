@@ -472,61 +472,40 @@ function Index() {
               </div>
             </Reveal>
           ))}
+
+          {/* Custom deep-dive sections (7 → 19) */}
+          <SectionLogicMojo />
+          <SectionReviews />
+          <SectionAlsoConsidered />
+          <SectionExpectations />
+          <SectionRoi />
+          <SectionChoose />
+          <SectionRedFlags />
+          <SectionFreeVsPaid />
+          <SectionPeople />
+          <SectionFaqs />
+          <SectionVerdict />
         </main>
       </div>
 
-      {/* Footer CTA */}
-      <footer className="relative overflow-hidden bg-hero-gradient">
-        <div className="absolute inset-0 grid-paper opacity-35" />
-        <div className="relative mx-auto max-w-6xl px-5 py-16">
-          <div className="max-w-2xl">
-            <span className="font-display text-xl font-bold text-primary-foreground">
-              LogicMojo
-            </span>
-            <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-primary-foreground md:text-4xl">
-              Build the skills that get priced at the top of the band
-            </h2>
-            <p className="mt-4 text-primary-foreground/85">
-              Live IST cohorts, the 2026 GenAI and MLOps stack, 10–15
-              interview-defensible projects with human code review, AI-specific
-              interview preparation and structured career guidance — at mid-band
-              pricing with EMI.
-            </p>
-            <div className="mt-7 flex flex-wrap gap-3">
-              <a
-                href="#top"
-                className="rounded-full bg-card px-5 py-2.5 text-sm font-bold text-primary shadow-lift transition-transform duration-200 hover:scale-[1.03]"
-              >
-                Talk to the LogicMojo team
-              </a>
-              <a
-                href="#in-depth-reviews-all-10-courses-on-one-salary-lens"
-                className="rounded-full border border-primary-foreground/35 px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-foreground/10"
-              >
-                Re-read the reviews
-              </a>
-            </div>
-            <dl className="mt-9 grid grid-cols-2 gap-4 text-primary-foreground/85 sm:grid-cols-4">
-              {[
-                ["Batch", "[INSERT: date]"],
-                ["Fee", "₹XX,XXX (EMI)"],
-                ["Duration", "X months"],
-                ["Weekly", "10–15 hours"],
-              ].map(([k, v]) => (
-                <div key={k} className="rounded-xl border border-primary-foreground/20 bg-primary-foreground/10 p-3">
-                  <dt className="text-[0.7rem] uppercase tracking-[0.14em]">{k}</dt>
-                  <dd className="mt-1 text-sm font-bold text-primary-foreground">{v}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-          <p className="mt-12 border-t border-primary-foreground/20 pt-6 text-xs text-primary-foreground/70">
-            Published by LogicMojo. Salary figures labelled by evidence tier —
-            Tier A verified, Tier B course-reported, Tier C illustrative. Reviewed
-            quarterly. © {new Date().getFullYear()} LogicMojo.
+      {/* Mobile bottom-bar CTA */}
+      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-card/95 p-3 backdrop-blur lg:hidden">
+        <div className="flex items-center gap-3">
+          <p className="min-w-0 flex-1 text-[0.72rem] leading-tight text-muted-foreground">
+            Live IST batches · 10–15 projects · no bond
           </p>
+          <a
+            href="#why-logicmojo-is-ranked-1"
+            className="shrink-0 rounded-full bg-primary px-4 py-2 text-xs font-bold text-primary-foreground shadow-glow"
+          >
+            See the #1 pick
+          </a>
         </div>
-      </footer>
+      </div>
+
+      <SiteFooter />
+      <div className="h-16 lg:hidden" />
     </div>
   );
 }
+
