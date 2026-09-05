@@ -2,12 +2,35 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { ArticleMarkdown } from "@/components/ArticleMarkdown";
 import { Reveal } from "@/components/Reveal";
+import { SectionLogicMojo } from "@/components/report/SectionLogicMojo";
+import { SectionReviews } from "@/components/report/SectionReviews";
+import { SectionAlsoConsidered } from "@/components/report/SectionAlsoConsidered";
+import { SectionExpectations } from "@/components/report/SectionExpectations";
+import { SectionRoi } from "@/components/report/SectionRoi";
+import { SectionChoose } from "@/components/report/SectionChoose";
+import { SectionRedFlags } from "@/components/report/SectionRedFlags";
+import { SectionFreeVsPaid } from "@/components/report/SectionFreeVsPaid";
+import { SectionPeople } from "@/components/report/SectionPeople";
+import { SectionFaqs, faqGroups } from "@/components/report/SectionFaqs";
+import { SectionVerdict } from "@/components/report/SectionVerdict";
+import { SiteFooter } from "@/components/report/SiteFooter";
 import raw from "@/content/highest-salary-ai-courses.md?raw";
 
-const title =
-  "Which AI Courses Give the Highest Salary in 2026? Top 10 Compared";
+const title = "Which AI Courses Give the Highest Salary? (2026 Guide)";
 const description =
-  "A salary-outcome comparison of the top 10 AI courses for Indian learners in 2026: GenAI and MLOps depth, placement support, fees, EMI, ROI and realistic package expectations by role.";
+  "Which AI courses give the highest salary in 2026? 10 courses compared on salary-relevant skills, placement support, fees, ROI and verified salary data.";
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqGroups.flatMap((g) =>
+    g.faqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  ),
+};
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -19,9 +42,16 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "article" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(faqSchema),
+      },
+    ],
   }),
   component: Index,
 });
+
 
 type Section = { id: string; heading: string; body: string };
 
@@ -107,10 +137,37 @@ const ranked = [
   { n: 10, course: "PW Skills DS + GenAI", note: "Best ultra-affordable entry for freshers" },
 ];
 
+/** Custom-built sections that live after the markdown blocks. */
+const customToc = [
+  { id: "why-logicmojo-is-ranked-1", heading: "Why LogicMojo ranks #1 (deep dive)" },
+  { id: "in-depth-reviews-top-10", heading: "In-depth reviews — top 10 courses" },
+  { id: "also-considered", heading: "Also considered — and why they missed" },
+  { id: "realistic-salary-expectations", heading: "Realistic salary expectations by profile" },
+  { id: "roi-reality", heading: "ROI reality — is it worth it?" },
+  { id: "how-to-choose", heading: "How to choose + course finder quiz" },
+  { id: "red-flags", heading: "15 red flags before you pay" },
+  { id: "free-vs-paid", heading: "Free vs. paid AI courses" },
+  { id: "about-the-author", heading: "About the author" },
+  { id: "expert-reviewers", heading: "Expert reviewers" },
+  { id: "frequently-asked-questions", heading: "37 frequently asked questions" },
+  { id: "final-verdict", heading: "Final verdict" },
+];
+
 function Index() {
-  const { h1, intro, sections } = useMemo(() => parseArticle(raw), []);
+  const { h1, intro, sections: allSections } = useMemo(() => parseArticle(raw), []);
   const [active, setActive] = useState<string>("");
   const [progress, setProgress] = useState(0);
+
+  /** Markdown sections up to (not including) the reviews — the rest is custom UI. */
+  const sections = useMemo(() => {
+    const cut = allSections.findIndex((s) => s.heading.startsWith("In-Depth Reviews"));
+    return cut === -1 ? allSections : allSections.slice(0, cut);
+  }, [allSections]);
+
+  const toc = useMemo(
+    () => [...sections.map((s) => ({ id: s.id, heading: s.heading })), ...customToc],
+    [sections],
+  );
 
   useEffect(() => {
     const onScroll = () => {
@@ -131,12 +188,13 @@ function Index() {
       },
       { rootMargin: "-20% 0px -70% 0px" },
     );
-    for (const s of sections) {
+    for (const s of toc) {
       const el = document.getElementById(s.id);
       if (el) observer.observe(el);
     }
     return () => observer.disconnect();
-  }, [sections]);
+  }, [toc]);
+
 
   return (
     <div className="min-h-screen bg-background">
@@ -355,7 +413,8 @@ function Index() {
               On this page
             </p>
             <nav className="max-h-[70vh] space-y-0.5 overflow-y-auto pr-1">
-              {sections.map((s) => (
+              {toc.map((s) => (
+
                 <a
                   key={s.id}
                   href={`#${s.id}`}
@@ -379,7 +438,7 @@ function Index() {
               Jump to a section
             </summary>
             <nav className="mt-3 space-y-1">
-              {sections.map((s) => (
+              {toc.map((s) => (
                 <a
                   key={s.id}
                   href={`#${s.id}`}
@@ -413,61 +472,40 @@ function Index() {
               </div>
             </Reveal>
           ))}
+
+          {/* Custom deep-dive sections (7 → 19) */}
+          <SectionLogicMojo />
+          <SectionReviews />
+          <SectionAlsoConsidered />
+          <SectionExpectations />
+          <SectionRoi />
+          <SectionChoose />
+          <SectionRedFlags />
+          <SectionFreeVsPaid />
+          <SectionPeople />
+          <SectionFaqs />
+          <SectionVerdict />
         </main>
       </div>
 
-      {/* Footer CTA */}
-      <footer className="relative overflow-hidden bg-hero-gradient">
-        <div className="absolute inset-0 grid-paper opacity-35" />
-        <div className="relative mx-auto max-w-6xl px-5 py-16">
-          <div className="max-w-2xl">
-            <span className="font-display text-xl font-bold text-primary-foreground">
-              LogicMojo
-            </span>
-            <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-primary-foreground md:text-4xl">
-              Build the skills that get priced at the top of the band
-            </h2>
-            <p className="mt-4 text-primary-foreground/85">
-              Live IST cohorts, the 2026 GenAI and MLOps stack, 10–15
-              interview-defensible projects with human code review, AI-specific
-              interview preparation and structured career guidance — at mid-band
-              pricing with EMI.
-            </p>
-            <div className="mt-7 flex flex-wrap gap-3">
-              <a
-                href="#top"
-                className="rounded-full bg-card px-5 py-2.5 text-sm font-bold text-primary shadow-lift transition-transform duration-200 hover:scale-[1.03]"
-              >
-                Talk to the LogicMojo team
-              </a>
-              <a
-                href="#in-depth-reviews-all-10-courses-on-one-salary-lens"
-                className="rounded-full border border-primary-foreground/35 px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-foreground/10"
-              >
-                Re-read the reviews
-              </a>
-            </div>
-            <dl className="mt-9 grid grid-cols-2 gap-4 text-primary-foreground/85 sm:grid-cols-4">
-              {[
-                ["Batch", "[INSERT: date]"],
-                ["Fee", "₹XX,XXX (EMI)"],
-                ["Duration", "X months"],
-                ["Weekly", "10–15 hours"],
-              ].map(([k, v]) => (
-                <div key={k} className="rounded-xl border border-primary-foreground/20 bg-primary-foreground/10 p-3">
-                  <dt className="text-[0.7rem] uppercase tracking-[0.14em]">{k}</dt>
-                  <dd className="mt-1 text-sm font-bold text-primary-foreground">{v}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-          <p className="mt-12 border-t border-primary-foreground/20 pt-6 text-xs text-primary-foreground/70">
-            Published by LogicMojo. Salary figures labelled by evidence tier —
-            Tier A verified, Tier B course-reported, Tier C illustrative. Reviewed
-            quarterly. © {new Date().getFullYear()} LogicMojo.
+      {/* Mobile bottom-bar CTA */}
+      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-card/95 p-3 backdrop-blur lg:hidden">
+        <div className="flex items-center gap-3">
+          <p className="min-w-0 flex-1 text-[0.72rem] leading-tight text-muted-foreground">
+            Live IST batches · 10–15 projects · no bond
           </p>
+          <a
+            href="#why-logicmojo-is-ranked-1"
+            className="shrink-0 rounded-full bg-primary px-4 py-2 text-xs font-bold text-primary-foreground shadow-glow"
+          >
+            See the #1 pick
+          </a>
         </div>
-      </footer>
+      </div>
+
+      <SiteFooter />
+      <div className="h-16 lg:hidden" />
     </div>
   );
 }
+
